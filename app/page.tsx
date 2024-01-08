@@ -2,15 +2,13 @@
 import useFetch from "./hooks/useFetch";
 import Loading from "./loading";
 import Error from "./error";
-import DogForm from "./components/form";
+import DropDown from "./components/dropdown";
 
 export default function Home() {
   // need to update the type data that is going to be returned
   const { data, error, loading } = useFetch(
     "https://api.thedogapi.com/v1/breeds"
   );
-
-  // would need to fix this any
 
   if (loading) return <Loading />;
   if (error) return <Error />;
@@ -19,7 +17,10 @@ export default function Home() {
   if (data)
     return (
       <main className="h-screen pt-64 flex justify-center">
-        <DogForm data={data} />
+        <form>
+          {/* each dropdown component is reusable */}
+          <DropDown data={data} label="Hunderase" />
+        </form>
       </main>
     );
 }
@@ -33,3 +34,6 @@ export default function Home() {
 // - why use refs
 // - what does this ref do
 // make components more reusable
+// make sure that you can access the form data
+// have a fake submit button for testing
+// change the toggle state to useRef

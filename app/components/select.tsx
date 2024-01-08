@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function Select({ selectValue }: { selectValue: string }) {
+  // make this reusable
   return (
     <div id="dog" className="flex justify-between items-center py-2 px-4">
       <div className="flex items-center">
