@@ -1,12 +1,15 @@
 "use client";
 import { useState } from "react";
 import DropDown from "./dropdown";
-import { focusWithinCss, activeCss } from "../styles/globalStyles";
+import { focusWithinCss, activeCss, focusCss } from "../styles/globalStyles";
 import Select from "./select";
+import { useRef } from "react";
+import { DogData } from "../lib/types";
 
-export default function DogForm({ data }: { data: any }) {
+export default function DogForm({ data }: { data: DogData[] }) {
   const [toggle, setToggle] = useState<boolean>(false);
   const [selectValue, setSelectValue] = useState<string>("Velg hunderase");
+  const selectRef = useRef<HTMLDivElement>(null);
 
   return (
     <form>
@@ -18,13 +21,22 @@ export default function DogForm({ data }: { data: any }) {
           Hunderase
         </label>
         <div
+          //  need the tab index attribute to make it the div focusable
+          tabIndex={0}
+          ref={selectRef}
           onClick={() => setToggle(!toggle)}
-          className={`bg-[#0000000D] rounded-2xl text-lg w-[535px] text-gray-600 font-light hover:cursor-pointer h-[48px] ${focusWithinCss} ${activeCss}`}
+          className={`bg-light-gray rounded-2xl text-lg w-[535px] text-gray-600 font-light hover:cursor-pointer h-[48px] ${focusWithinCss} ${activeCss} ${focusCss}`}
         >
           {/* not using select/option tags bc of very limited styling options */}
           <Select selectValue={selectValue} />
           {/* custom options */}
-          {toggle && <DropDown data={data} setSelectValue={setSelectValue} />}
+          {toggle && (
+            <DropDown
+              data={data}
+              setSelectValue={setSelectValue}
+              selectRef={selectRef}
+            />
+          )}
         </div>
       </div>
     </form>

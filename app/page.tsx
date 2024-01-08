@@ -10,6 +10,8 @@ export default function Home() {
     "https://api.thedogapi.com/v1/breeds"
   );
 
+  // would need to fix this any
+
   if (loading) return <Loading />;
   if (error) return <Error />;
   if (!data) return <p>No dog data</p>;
@@ -17,7 +19,18 @@ export default function Home() {
   if (data)
     return (
       <main className="h-screen pt-64 flex justify-center">
+        {/* make sure this is the correct way of passing it down */}
         <DogForm data={data} />
+        {/* <input ref={selectRef} />
+        <button
+          onClick={() => {
+            if (selectRef.current != null) {
+              selectRef.current.focus();
+            }
+          }}
+        >
+          Focus the input
+        </button>{" "} */}
       </main>
     );
 }
