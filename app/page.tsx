@@ -1,18 +1,32 @@
-import Image from "next/image";
+"use client";
+import useFetch from "./hooks/useFetch";
+import Loading from "./loading";
+import Error from "./error";
+import DogForm from "./components/form";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-    </main>
+  // need to update the type data that is going to be returned
+  const { data, error, loading } = useFetch(
+    "https://api.thedogapi.com/v1/breeds"
   );
+
+  if (loading) return <Loading />;
+  if (error) return <Error />;
+  if (!data) return <p>No dog data</p>;
+
+  if (data)
+    return (
+      <main className="h-screen pt-64 flex justify-center">
+        <DogForm data={data} />
+      </main>
+    );
 }
+
+// accessibility
+// remove blue outline around components in focus state?
+
+// check list
+// need to fix focus state on select
+// need to add round colors to the data
+// create an action for the form for scalability
+// make components more reusable
