@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import DropDown from "./dropdown";
-import { focusCss, activeCss } from "../styles/styles";
+import { focusWithinCss, activeCss } from "../styles/globalStyles";
 import Select from "./select";
 
 export default function DogForm({ data }: { data: any }) {
@@ -19,7 +19,7 @@ export default function DogForm({ data }: { data: any }) {
         </label>
         <div
           onClick={() => setToggle(!toggle)}
-          className={`bg-[#0000000D] rounded-2xl text-lg w-[535px] text-gray-600 font-light hover:cursor-pointer h-[48px] ${focusCss} ${activeCss}`}
+          className={`bg-[#0000000D] rounded-2xl text-lg w-[535px] text-gray-600 font-light hover:cursor-pointer h-[48px] ${focusWithinCss} ${activeCss}`}
         >
           {/* not using select/option tags bc of very limited styling options */}
           <Select selectValue={selectValue} />

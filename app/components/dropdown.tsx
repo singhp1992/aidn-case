@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { focusCss, hoverCss } from "../styles/styles";
+import { focusWithinCss, hoverCss } from "../styles/globalStyles";
 
 // todo: need to update the type here
 export default function DropDown({
@@ -24,7 +24,7 @@ export default function DropDown({
           onClick={() => setSelectValue(dog.name)}
           className={`px-4 py-2 flex items-center w-full ${
             i == "0" && "rounded-t-xl"
-          }  ${focusCss} ${hoverCss}`}
+          }  ${focusWithinCss} ${hoverCss}`}
         >
           <div>
             <div
