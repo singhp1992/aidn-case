@@ -19,18 +19,7 @@ export default function Home() {
   if (data)
     return (
       <main className="h-screen pt-64 flex justify-center">
-        {/* make sure this is the correct way of passing it down */}
         <DogForm data={data} />
-        {/* <input ref={selectRef} />
-        <button
-          onClick={() => {
-            if (selectRef.current != null) {
-              selectRef.current.focus();
-            }
-          }}
-        >
-          Focus the input
-        </button>{" "} */}
       </main>
     );
 }
@@ -38,7 +27,9 @@ export default function Home() {
 // accessibility
 // remove blue outline around components in focus state?
 
-// check list
-// need to fix focus state on select
-// create an action for the form for scalability
+// CHECK LIST
+// 1. double check states in figma
+// 2. look into refs, be able to answer questions
+// - why use refs
+// - what does this ref do
 // make components more reusable
