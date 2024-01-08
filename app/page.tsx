@@ -27,6 +27,5 @@ export default function Home() {
 
 // check list
 // need to fix focus state on select
-// need to add round colors to the data
 // create an action for the form for scalability
 // make components more reusable
