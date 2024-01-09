@@ -14,11 +14,11 @@ export default function Home() {
     "https://api.thedogapi.com/v1/breeds"
   );
   // COMMENT: for reusability testing
-  const {
-    data: data2,
-    error: error2,
-    loading: loading2,
-  } = useFetch<DogData>("https://api.thecatapi.com/v1/breeds");
+  // const {
+  //   data: data2,
+  //   error: error2,
+  //   loading: loading2,
+  // } = useFetch<DogData>("https://api.thecatapi.com/v1/breeds");
 
   if (loading) return <Loading />;
   if (error) return <Error />;
