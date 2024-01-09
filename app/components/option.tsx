@@ -9,7 +9,6 @@ import {
 type Props = {
   data: DogData[] | null | undefined;
   setSelectValue: Dispatch<SetStateAction<ValueState>>;
-  selectRef: RefObject<HTMLDivElement>;
   selectValue: ValueState;
   setFormData: Dispatch<SetStateAction<FormState>>;
   label: string;
@@ -17,15 +16,8 @@ type Props = {
 };
 
 export default function Option({ ...props }: Props) {
-  const {
-    data,
-    setSelectValue,
-    selectRef,
-    selectValue,
-    setFormData,
-    label,
-    formName,
-  } = props;
+  const { data, setSelectValue, selectValue, setFormData, label, formName } =
+    props;
 
   return (
     <div className="rounded-xl shadow-md mt-2 hover:cursor-pointer h-[300px] overflow-scroll z-50">

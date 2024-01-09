@@ -48,7 +48,6 @@ export default function DropDown({ ...props }: Props) {
             data={data}
             setSelectValue={setSelectValue}
             selectValue={selectValue}
-            selectRef={selectRef}
             label={label}
             formName={formName}
             setFormData={setFormData}
