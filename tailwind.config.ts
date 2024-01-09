@@ -20,6 +20,9 @@ const config: Config = {
         "light-blue": "#99DAFF",
         "focus-green": "#B7FAAC",
       },
+      boxShadow: {
+        default: "0px 4px 30px 0px #0000001A",
+      },
     },
   },
   plugins: [],
