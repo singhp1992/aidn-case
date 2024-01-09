@@ -21,3 +21,8 @@ export type ValueState = {
   text: string;
   color?: string;
 };
+
+export type FormState = {
+  dogBreed?: string;
+  catBreed?: string;
+};

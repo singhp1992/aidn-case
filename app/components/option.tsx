@@ -1,5 +1,5 @@
 import { Dispatch, RefObject, SetStateAction } from "react";
-import { DogData, ValueState } from "../lib/types";
+import { DogData, FormState, ValueState } from "../lib/types";
 import {
   alternatingColors,
   focusWithinCss,
@@ -11,27 +11,45 @@ type Props = {
   setSelectValue: Dispatch<SetStateAction<ValueState>>;
   selectRef: RefObject<HTMLDivElement>;
   selectValue: ValueState;
+  setFormData: Dispatch<SetStateAction<FormState>>;
+  label: string;
+  formName: string;
 };
 
-export default function Option({
-  data,
-  setSelectValue,
-  selectRef,
-  selectValue,
-}: Props) {
+export default function Option({ ...props }: Props) {
+  const {
+    data,
+    setSelectValue,
+    selectRef,
+    selectValue,
+    setFormData,
+    label,
+    formName,
+  } = props;
+  
   return (
     <div className="rounded-xl shadow-md mt-2 hover:cursor-pointer h-[300px] overflow-scroll z-50">
-      {data?.map((dog: any, i: any) => (
+      {data?.map((animal: any, i: any) => (
         <div
           key={i}
+          id={label}
           tabIndex={1}
           onClick={() => {
-            // need to make sure that the current selectref isnt null
+            // need to make sure that the current selectref isnt null - this line is used for setting the div focus state after selection
             selectRef.current!.focus();
-            setSelectValue({ text: dog.name, color: alternatingColors[i % 3] });
+            // selecting the value for the visible "select" divs
+            setSelectValue({
+              text: animal.name,
+              color: alternatingColors[i % 3],
+            });
+            // setting overall form state from grandparent (page.tsx)
+            setFormData((prevState) => ({
+              ...prevState,
+              [formName]: animal.name,
+            }));
           }}
           className={`px-4 py-2 flex items-center w-full ${
-            selectValue.text == dog.name && "bg-focus-green"
+            selectValue.text == animal.name && "bg-focus-green"
           } ${i == "0" && "rounded-t-xl"}  ${focusWithinCss} ${hoverCss}`}
         >
           <div>
@@ -42,8 +60,8 @@ export default function Option({
             />
           </div>
           <div className="pl-4">
-            <p className="font-medium">{dog.name}</p>
-            <p className="font-light truncate">{dog.temperament}</p>
+            <p className="font-medium">{animal.name}</p>
+            <p className="font-light truncate">{animal.temperament}</p>
           </div>
         </div>
       ))}

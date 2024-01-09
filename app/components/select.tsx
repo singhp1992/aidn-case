@@ -3,8 +3,8 @@ import { ValueState } from "../lib/types";
 
 type Props = { selectValue: ValueState; defaultText: string };
 
-export default function Select({ selectValue, defaultText }: Props) {
-  // make this reusable
+export default function Select({ ...props }: Props) {
+  const { selectValue, defaultText } = props;
   return (
     <div id="dog" className="flex justify-between items-center py-2 px-4">
       <div className="flex items-center">

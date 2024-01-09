@@ -1,25 +1,30 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+// use client directive needed since useState/useEffect etc is used in this component
+import { useRef, useState, useEffect, Dispatch, SetStateAction } from "react";
 import { focusWithinCss, activeCss, focusCss } from "../styles/globalStyles";
 import Select from "./select";
 import Option from "./option";
-import { DogData, ValueState } from "../lib/types";
+import { DogData, FormState, ValueState } from "../lib/types";
 
 type Props = {
   data: DogData[] | null | undefined;
   label: string;
   defaultText: string;
+  setFormData: Dispatch<SetStateAction<FormState>>;
+  formName: string;
 };
 
-export default function DropDown({ data, label, defaultText }: Props) {
+export default function DropDown({ ...props }: Props) {
+  const { data, label, defaultText, setFormData, formName } = props;
   const [toggle, setToggle] = useState<boolean>(false);
   const selectRef = useRef<HTMLDivElement>(null);
-
+  // select value is what will show up in the faux "select" div
   const [selectValue, setSelectValue] = useState<ValueState>({
     text: "",
     color: "",
   });
 
+  // setting the initial value of the "select" div which is passed down as a prop
   useEffect(() => setSelectValue({ text: defaultText }), [defaultText]);
 
   return (
@@ -34,13 +39,15 @@ export default function DropDown({ data, label, defaultText }: Props) {
       >
         {/* not using select/option tags bc of very limited styling options */}
         <Select selectValue={selectValue} defaultText={defaultText} />
-        {/* custom options */}
         {toggle && (
           <Option
             data={data}
             setSelectValue={setSelectValue}
             selectValue={selectValue}
             selectRef={selectRef}
+            label={label}
+            formName={formName}
+            setFormData={setFormData}
           />
         )}
       </div>
