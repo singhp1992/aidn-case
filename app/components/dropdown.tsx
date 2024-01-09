@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { focusWithinCss, activeCss, focusCss } from "../styles/globalStyles";
 import Select from "./select";
 import Option from "./option";
-import { DogData } from "../lib/types";
+import { DogData, ValueState } from "../lib/types";
 
 export default function DropDown({
   data,
@@ -14,14 +14,18 @@ export default function DropDown({
 }) {
   const [toggle, setToggle] = useState<boolean>(false);
   // specifically need to use useState here for the form, can't use useRef ---- double check
-  const [selectValue, setSelectValue] = useState<string>("Velg hunderase");
+  //
+  const [selectValue, setSelectValue] = useState<ValueState>({
+    text: "Velg hunderase",
+    color: "",
+  });
   const selectRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="w-fit mt-4 z-0">
       <p className="block text-sm pb-2 font-light text-gray-600">{label}</p>
       <div
-        //  need the tab index attribute to make it the div focusable
+        // need the tab index attribute to make it the div focusable
         tabIndex={0}
         ref={selectRef}
         onClick={() => setToggle(!toggle)}
@@ -30,11 +34,11 @@ export default function DropDown({
         {/* not using select/option tags bc of very limited styling options */}
         <Select selectValue={selectValue} />
         {/* custom options */}
-        
         {toggle && (
           <Option
             data={data}
             setSelectValue={setSelectValue}
+            selectValue={selectValue}
             selectRef={selectRef}
           />
         )}

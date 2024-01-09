@@ -36,4 +36,5 @@ export default function Home() {
 // make components more reusable
 // make sure that you can access the form data
 // have a fake submit button for testing
-// change the toggle state to useRef
+// make sure useFetch is truly reusable
+// fix the div round color on click

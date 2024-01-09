@@ -16,3 +16,8 @@ export type DogData = {
     metric: string;
   };
 };
+
+export type ValueState = {
+  text: string;
+  color: string;
+};

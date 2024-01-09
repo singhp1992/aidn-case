@@ -1,22 +1,22 @@
 import { Dispatch, RefObject, SetStateAction } from "react";
-import { DogData } from "../lib/types";
-import { focusWithinCss, hoverCss } from "../styles/globalStyles";
+import { DogData, ValueState } from "../lib/types";
+import {
+  alternatingColors,
+  focusWithinCss,
+  hoverCss,
+} from "../styles/globalStyles";
 
-// todo: need to update the type here
 export default function Option({
   data,
   setSelectValue,
   selectRef,
+  selectValue,
 }: {
   data: DogData[];
-  setSelectValue: Dispatch<SetStateAction<string>>;
+  setSelectValue: Dispatch<SetStateAction<ValueState>>;
   selectRef: RefObject<HTMLDivElement>;
+  selectValue: ValueState;
 }) {
-  const alternatingColors = [
-    "bg-light-yellow",
-    "bg-light-green",
-    "bg-light-blue",
-  ];
   // make this form reusable
   return (
     <div className="rounded-xl shadow-md mt-2 hover:cursor-pointer h-[300px] overflow-scroll z-50">
@@ -25,13 +25,13 @@ export default function Option({
           key={i}
           tabIndex={1}
           onClick={() => {
-            //   need to make sure that the current selectref isnt null
+            // need to make sure that the current selectref isnt null
             selectRef.current!.focus();
-            setSelectValue(dog.name);
+            setSelectValue({ text: dog.name, color: alternatingColors[i % 3] });
           }}
           className={`px-4 py-2 flex items-center w-full ${
-            i == "0" && "rounded-t-xl"
-          }  ${focusWithinCss} ${hoverCss}`}
+            selectValue.text == dog.name && "bg-focus-green"
+          } ${i == "0" && "rounded-t-xl"}  ${focusWithinCss} ${hoverCss}`}
         >
           <div>
             <div
