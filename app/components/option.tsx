@@ -26,7 +26,7 @@ export default function Option({ ...props }: Props) {
     label,
     formName,
   } = props;
-  
+
   return (
     <div className="rounded-xl shadow-md mt-2 hover:cursor-pointer h-[300px] overflow-scroll z-50">
       {data?.map((animal: any, i: any) => (
@@ -35,8 +35,6 @@ export default function Option({ ...props }: Props) {
           id={label}
           tabIndex={1}
           onClick={() => {
-            // need to make sure that the current selectref isnt null - this line is used for setting the div focus state after selection
-            selectRef.current!.focus();
             // selecting the value for the visible "select" divs
             setSelectValue({
               text: animal.name,
