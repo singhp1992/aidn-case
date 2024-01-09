@@ -6,18 +6,19 @@ import {
   hoverCss,
 } from "../styles/globalStyles";
 
+type Props = {
+  data: DogData[] | null | undefined;
+  setSelectValue: Dispatch<SetStateAction<ValueState>>;
+  selectRef: RefObject<HTMLDivElement>;
+  selectValue: ValueState;
+};
+
 export default function Option({
   data,
   setSelectValue,
   selectRef,
   selectValue,
-}: {
-  data: DogData[];
-  setSelectValue: Dispatch<SetStateAction<ValueState>>;
-  selectRef: RefObject<HTMLDivElement>;
-  selectValue: ValueState;
-}) {
-  // make this form reusable
+}: Props) {
   return (
     <div className="rounded-xl shadow-md mt-2 hover:cursor-pointer h-[300px] overflow-scroll z-50">
       {data?.map((dog: any, i: any) => (

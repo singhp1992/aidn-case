@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { DogData } from "../lib/types";
 
-export default function useFetch(url: string) {
-  const [data, setData] = useState<DogData[]>();
+// using generic T for reusability
+export default function useFetch<T>(url: string) {
+  const [data, setData] = useState<T[] | null>();
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
