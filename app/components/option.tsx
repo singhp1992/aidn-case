@@ -29,7 +29,7 @@ export default function Option({ ...props }: Props) {
 
   return (
     <div className="rounded-xl shadow-md mt-2 hover:cursor-pointer h-[300px] overflow-scroll z-50">
-      {data?.map((animal: any, i: any) => (
+      {data?.map((animal: DogData, i: number) => (
         <div
           key={i}
           id={label}
@@ -48,7 +48,7 @@ export default function Option({ ...props }: Props) {
           }}
           className={`px-4 py-2 flex items-center w-full ${
             selectValue.text == animal.name && "bg-focus-green"
-          } ${i == "0" && "rounded-t-xl"}  ${focusWithinCss} ${hoverCss}`}
+          } ${i == 0 && "rounded-t-xl"}  ${focusWithinCss} ${hoverCss}`}
         >
           <div>
             <div
