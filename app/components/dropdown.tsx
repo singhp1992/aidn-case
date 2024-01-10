@@ -32,6 +32,7 @@ export default function DropDown({ ...props }: Props) {
       <p className="block text-sm pb-2 font-light text-gray-600">{label}</p>
       <div
         // need the tab index attribute to make it the div focusable
+        id="focus"
         tabIndex={0}
         ref={selectRef}
         onClick={() => {
