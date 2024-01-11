@@ -56,9 +56,9 @@ export default function Option({ ...props }: Props) {
             <p className="font-medium">{animal.name}</p>
             {/* some truncate at 61 characters, some truncate at 65, one fix is to adjust the width to "force" truncate */}
             <p
-              className={`font-light w-[475px] truncate ${
+              className={`font-light w-[475px] truncate max-h-[50px] ${
                 animal.temperament?.length > 61 &&
-                "hover:h-[56px] h-[28px] hover:overflow-visible hover:text-wrap transition-all ease-linear delay-150 duration-300 "
+                "hover:max-h-[100px] hover:overflow-visible hover:text-wrap transition-all ease-linear delay-150 duration-300"
               }`}
             >
               {animal.temperament}
