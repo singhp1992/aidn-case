@@ -22,7 +22,7 @@ export default function Option({ ...props }: Props) {
   return (
     <div
       id="options"
-      className="rounded-xl shadow-default mt-2 hover:cursor-pointer h-[300px] overflow-scroll z-50"
+      className="rounded-xl shadow-default mt-2 hover:cursor-pointer h-[300px] overflow-y-scroll z-50"
     >
       {data?.map((animal: DogData, i: number) => (
         <div
@@ -41,7 +41,7 @@ export default function Option({ ...props }: Props) {
               [formName]: animal.name,
             }));
           }}
-          className={`px-4 py-2 flex items-center w-full ${
+          className={`px-4 py-2 flex items-center w-full overflow-hidden ${
             selectValue.text == animal.name && "bg-focus-green"
           } ${i == 0 && "rounded-t-xl"}  ${focusWithinCss} ${hoverCss}`}
         >
@@ -54,7 +54,15 @@ export default function Option({ ...props }: Props) {
           </div>
           <div className="pl-4">
             <p className="font-medium">{animal.name}</p>
-            <p className="font-light truncate">{animal.temperament}</p>
+            {/* some truncate at 61 characters, some truncate at 65, one fix is to adjust the width to "force" truncate */}
+            <p
+              className={`font-light w-[475px] truncate ${
+                animal.temperament?.length > 61 &&
+                "hover:h-[56px] h-[28px] hover:overflow-visible hover:text-wrap transition-all ease-linear delay-150 duration-300 "
+              }`}
+            >
+              {animal.temperament}
+            </p>
           </div>
         </div>
       ))}
