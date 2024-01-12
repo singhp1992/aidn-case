@@ -40,7 +40,7 @@ export default function DropDown({ ...props }: Props) {
           // need to make sure that the current selectref isnt null - used for setting the div focus state after user interaction
           selectRef.current!.focus();
         }}
-        className={`bg-light-gray rounded-2xl text-lg w-[350px] md:w-[535px] text-gray-600 font-light hover:cursor-pointer h-[48px] ${focusWithinCss} ${activeCss} ${focusCss}`}
+        className={`bg-light-gray rounded-2xl text-lg w-[400px] md:w-[535px] text-gray-600 font-light hover:cursor-pointer h-[48px] ${focusWithinCss} ${activeCss} ${focusCss}`}
       >
         {/* not using select/option tags bc of very limited styling options */}
         <Select selectValue={selectValue} defaultText={defaultText} />

@@ -54,9 +54,11 @@ export default function Option({ ...props }: Props) {
           </div>
           <div className="pl-4">
             <p className="font-medium">{animal.name}</p>
-            {/* some truncate at 61 characters, some truncate at 65, one fix is to adjust the width to "force" truncate */}
+            {/* text-wrap for mobile */}
+            {/* truncating text on md screens and larger. 
+            on hover of element, the rest of the text will show */}
             <p
-              className={`max-h-[28px] hover:overflow-visible hover:text-wrap transition-all delay-300 duration-500 ease-in-out hover:max-h-[200px] font-light w-[475px] truncate `}
+              className={`text-wrap md:max-h-[28px] md:hover:overflow-visible md:hover:text-wrap md:transition-all md:delay-300 md:duration-500 md:ease-in-out md:hover:max-h-[200px] font-light md:w-[475px] md:truncate `}
             >
               {animal.temperament}
             </p>
