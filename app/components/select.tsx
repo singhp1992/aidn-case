@@ -20,6 +20,7 @@ export default function Select({ ...props }: Props) {
         <span>{selectValue.text}</span>
       </div>
       <Image
+        id={formName}
         src="/down-arrow.svg"
         alt="Down Arrow"
         width={16}
