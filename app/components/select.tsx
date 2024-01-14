@@ -11,15 +11,17 @@ export default function Select({ ...props }: Props) {
   const { selectValue, defaultText, formName } = props;
   return (
     <div id={formName} className="flex justify-between items-center py-2 px-4">
-      <div className="flex items-center">
+      <div id={formName} className="flex items-center">
         {selectValue.text != defaultText && (
           <div
+            id={formName}
             className={`mr-2 w-4 h-4 rounded-full flex justify-center items-center ${selectValue.color}`}
           />
         )}
-        <span>{selectValue.text}</span>
+        <span id={formName}>{selectValue.text}</span>
       </div>
       <Image
+        id={formName}
         src="/down-arrow.svg"
         alt="Down Arrow"
         width={16}
