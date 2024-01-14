@@ -22,7 +22,7 @@ export default function Option({ ...props }: Props) {
   return (
     <div
       id="options"
-      className="rounded-xl shadow-default mt-2 hover:cursor-pointer h-[300px] overflow-y-scroll z-50"
+      className="relative bg-white rounded-xl shadow-default mt-2 hover:cursor-pointer h-[300px] overflow-y-scroll z-50"
     >
       {data?.map((animal: DogData, i: number) => (
         <div

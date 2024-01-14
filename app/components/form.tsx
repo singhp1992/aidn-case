@@ -14,11 +14,13 @@ export default function Form() {
     "https://api.thedogapi.com/v1/breeds"
   );
   // COMMENT: for reusability testing
-  //   const {
-  //     data: data2,
-  //     error: error2,
-  //     loading: loading2,
-  //   } = useFetch<DogData>("https://api.thecatapi.com/v1/breeds");
+  const {
+    data: data2,
+    error: error2,
+    loading: loading2,
+  } = useFetch<DogData>("https://api.thecatapi.com/v1/breeds");
+
+  console.log(formData, ">>>> updated form data");
 
   if (loading) return <Loading />;
   if (error) return <Error />;
@@ -26,9 +28,9 @@ export default function Form() {
 
   return (
     <form
-      className="flex gap-4"
+      className="px-4"
       // COMMENT: for form submission testing
-      //   onSubmit={(e) => handleFormSubmit(e, formData)}
+      // onSubmit={(e) => handleFormSubmit(e, formData)}
     >
       {/* COMMENT: each dropdown component is reusable */}
       <DropDown
@@ -47,7 +49,14 @@ export default function Form() {
         setFormData={setFormData}
       /> */}
       {/* COMMENT: for form submission testing */}
-      {/* <button type="submit">submit</button> */}
+      {/* <div className="w-full justify-end flex">
+        <button
+          type="submit"
+          className="px-4 py-2 mt-4 border border-gray-300 rounded-lg text-gray-300"
+        >
+          submit
+        </button>
+      </div> */}
     </form>
   );
 }

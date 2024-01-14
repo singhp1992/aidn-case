@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 // COMMENT: using generic T for reusability
-// COMMENT: using client side rendering
 export default function useFetch<T>(url: string) {
   const [data, setData] = useState<T[] | null>();
   const [error, setError] = useState<boolean>(false);
