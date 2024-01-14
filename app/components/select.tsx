@@ -1,12 +1,16 @@
 import Image from "next/image";
 import { ValueState } from "../lib/types";
 
-type Props = { selectValue: ValueState; defaultText: string };
+type Props = {
+  selectValue: ValueState;
+  defaultText: string;
+  formName: string;
+};
 
 export default function Select({ ...props }: Props) {
-  const { selectValue, defaultText } = props;
+  const { selectValue, defaultText, formName } = props;
   return (
-    <div id="dog" className="flex justify-between items-center py-2 px-4">
+    <div id={formName} className="flex justify-between items-center py-2 px-4">
       <div className="flex items-center">
         {selectValue.text != defaultText && (
           <div

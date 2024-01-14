@@ -27,6 +27,20 @@ export default function DropDown({ ...props }: Props) {
   // setting the initial value of the "select" div which is passed down as a prop
   useEffect(() => setSelectValue({ text: defaultText }), [defaultText]);
 
+  useEffect(() => {
+    // only add the event listener when the dropdown is opened
+    if (!toggle) return;
+    // removing toggle if user clicks outside of the dropdown element
+    let handleClick = (event: MouseEvent) => {
+      if (toggle && (event.target as HTMLElement).id != formName) {
+        console.log("removing toggle on outside click");
+        setToggle(false);
+      }
+    };
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, [toggle]);
+
   return (
     <div className="w-full mt-4 z-0">
       <p className="block text-sm pb-2 font-light text-gray-600">{label}</p>
@@ -44,7 +58,11 @@ export default function DropDown({ ...props }: Props) {
         className={`bg-light-gray rounded-2xl text-lg  text-gray-600 font-light hover:cursor-pointer h-[48px] ${focusWithinCss} ${activeCss} ${focusCss}`}
       >
         {/* not using select/option tags bc of very limited styling options */}
-        <Select selectValue={selectValue} defaultText={defaultText} />
+        <Select
+          selectValue={selectValue}
+          defaultText={defaultText}
+          formName={formName}
+        />
         {toggle && (
           <Option
             data={data}
